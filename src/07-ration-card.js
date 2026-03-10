@@ -21,7 +21,7 @@
  *      - Agar registry object nahi hai ya null hai, return []
  *      - Example: getFamilyNames({"RC001":{...},"RC002":{...}}) => ["RC001", "RC002"]
  *
- *   2. getAllFamilies(registry)
+ *   2. getAllFamilies(registry)  
  *      - Object.values() se saari family objects nikalo
  *      - Agar registry object nahi hai ya null hai, return []
  *      - Example: getAllFamilies({"RC001":{head:"Ram"}}) => [{head:"Ram"}]
@@ -54,20 +54,44 @@
  */
 export function getFamilyNames(registry) {
   // Your code here
+  if(typeof registry !== "object" || registry === null || Array.isArray(registry)){
+    return [];
+  }
+  return Object.keys(registry);
 }
 
 export function getAllFamilies(registry) {
   // Your code here
+  if(typeof registry !== "object" || registry === null || Array.isArray(registry)){
+    return [];
+  }
+  return Object.values(registry);
 }
 
 export function getRationCardEntries(registry) {
   // Your code here
+  if(typeof registry !== "object" || registry === null || Array.isArray(registry)){
+    return [];
+  }
+  return Object.entries(registry);
 }
 
 export function hasRationCard(registry, cardId) {
   // Your code here
+  if(typeof registry !== "object" || typeof cardId !=="string" || registry === null || Array.isArray(registry)){
+    return false;
+  }
+  return registry.hasOwnProperty(cardId)
 }
 
 export function removeRationCard(registry, cardId) {
   // Your code here
+  if(typeof registry !== "object" || typeof cardId !== "string" || Array.isArray(registry) || registry === null){
+    return false;
+  }
+  if(registry.hasOwnProperty(cardId)){
+    delete registry[cardId];
+    return true;
+  }
+  return false;
 }
